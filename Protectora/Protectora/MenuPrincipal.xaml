@@ -1,0 +1,524 @@
+﻿<Window x:Class="Protectora.MenuPrincipal"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Protectora"
+        mc:Ignorable="d"
+        Title="Gestión Protectora" Width="1920" Height="1080" Icon="Iconos/home.png"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Margin" Value="2"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Foreground" Value="Blue"/>
+                    <Setter Property="BorderBrush" Value="Blue"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property="Margin" Value="5,5,0,0"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="Margin" Value="5,0,0,0"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Background" Value="AliceBlue"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="300"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+        <ControlTemplate x:Key="plantillaFeedbackError">
+            <Border BorderBrush="Red" BorderThickness="2" >
+                <AdornedElementPlaceholder>
+                    <TextBlock Text="{Binding [0].ErrorContent}"
+                               Foreground="Red"
+                               HorizontalAlignment="Right"
+                               VerticalAlignment="Bottom"
+                               Margin="0,0,3,3"
+                               FontSize="9"/>
+                </AdornedElementPlaceholder>
+            </Border>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <TabControl x:Name="tcPestañas">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Iconos/perro.png"
+                               Width="50" Height="50"/>
+                        <TextBlock Text="Perros" 
+                               VerticalAlignment="Center" Margin="7,0,0,0" FontSize="24"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="800*"/>
+                        <RowDefinition Height="189*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="638*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="600*"/>
+                        <ColumnDefinition Width="650*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox x:Name="lstPerros" ItemsSource="{Binding}" SelectedItem="0" SelectedIndex="0"
+                             SelectionChanged="lstPerros_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Foto}" 
+                                           Width="100" Height="100"/>
+                                    <TextBlock Text="{Binding Nombre}"
+                                               VerticalAlignment="Center" Margin="7,0,0,0" FontSize="24"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Grid.RowSpan="2"/>
+
+                    <GroupBox x:Name="gbPerro" Grid.Column="2" Grid.Row="0" FontSize="24" 
+                              Header="Información Perro" VerticalAlignment="Top" Grid.RowSpan="2"
+                              Margin="5,0,0,0">
+                        <StackPanel>
+                            <StackPanel>
+                                <Label Content="Nombre:"/>
+                                <TextBox x:Name="txtNombrePerro"
+                                         Text="{Binding ElementName=lstPerros, Path=SelectedItem.Nombre}"/>
+                                <Border Margin="5,5,0,0" HorizontalAlignment="Left" 
+                                        BorderBrush="Black" BorderThickness="1">
+                                    <Grid>
+                                        <Image x:Name="imgPerro" Height="200" Width="400" Stretch="Fill"
+                                           HorizontalAlignment="Left"
+                                           Source="{Binding ElementName=lstPerros, Path=SelectedItem.Foto}"/>
+                                        <Button x:Name="btnImagenPerro" VerticalAlignment="Bottom"
+                                                HorizontalAlignment="Right" Click="btnImagenPerro_Click"
+                                                ToolTip="Pulse para seleccionar otra imagen">
+                                            <Image Height="30" Width="30"
+                                               Source="Iconos/reemplazar.png"/>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+
+                                <Label Content="Sexo:"/>
+                                <TextBox x:Name="txtSexo"
+                                         Text="{Binding ElementName=lstPerros, Path=SelectedItem.Sexo}"
+                                         PreviewKeyDown="pulsarEspacio_PreviewKeyDown"/>
+                                <Label Content="Raza:"/>
+                                <TextBox x:Name="txtRaza"
+                                         Text="{Binding ElementName=lstPerros, Path=SelectedItem.Raza}"/>
+                                <Label Content="Fecha de entrada:"/>
+                                <DatePicker x:Name="dpFechaEntrada"
+                                            SelectedDate="{Binding ElementName=lstPerros, Path=SelectedItem.FechaEntrada}"
+                                            Width="150" HorizontalAlignment="Left"
+                                            Margin="5,0,0,5" Height="25" FontSize="16"/>
+                                <Separator/>
+                                <Label Content="Tamaño (metros):"/>
+                                <TextBox x:Name="txtTamaño"
+                                         Text="{Binding ElementName=lstPerros, Path=SelectedItem.Tamaño}"
+                                         PreviewTextInput="txtDecimal_PreviewTextInput"
+                                         PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                         ToolTip="Solo admite números"/>
+                                <Label Content="Edad (años):"/>
+                                <TextBox x:Name="txtEdad"
+                                         Text="{Binding ElementName=lstPerros, Path=SelectedItem.Edad}"
+                                         PreviewTextInput="txtEntero_PreviewTextInput"
+                                         PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                         Margin="5,0,0,5" ToolTip="Solo admite números"/>
+                                
+                            </StackPanel>
+
+                            <Separator/>
+
+                            <StackPanel>
+                                <CheckBox x:Name="chCachorro" Content="Cachorro"
+                                          IsChecked="{Binding ElementName=lstPerros, Path=SelectedItem.Cachorro}"/>
+                                <CheckBox x:Name="chPpp" Content="Perro potencialmente peligroso"
+                                          IsChecked="{Binding ElementName=lstPerros, Path=SelectedItem.Ppp}"/>
+                                <CheckBox x:Name="chVacunado" Content="Vacunado"
+                                          IsChecked="{Binding ElementName=lstPerros, Path=SelectedItem.Vacunado}"/>
+                                <CheckBox x:Name="chEsterilizado" Content="Esterilizado"
+                                          IsChecked="{Binding ElementName=lstPerros, Path=SelectedItem.Esterilizado}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <GroupBox x:Name="gbPadrino" Grid.Column="3" Header="Información Padrino" 
+                              FontSize="24" VerticalAlignment="Top" IsEnabled="False" Margin="5,0,0,0">
+                        <StackPanel>
+                            <Label Content="Dni:"/>
+                            <TextBox x:Name="txtDniPadrino" IsReadOnly="True" IsHitTestVisible="False"
+                                     Text="{Binding ElementName=lstPerros, Path=SelectedItem.Padrino}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown" ToolTip="Este campo no se puede modificar"/>
+                            <Label Content="Nombre:"/>
+                            <TextBox x:Name="txtNombrePadrino" Text="{Binding Nombre}"/>
+                            <Label Content="Apellidos:"/>
+                            <TextBox x:Name="txtApellidosPadrino" Text="{Binding Apellidos}"/>
+                            <Label Content="Email:"/>
+                            <TextBox x:Name="txtEmailPadrino" Text="{Binding Email}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"/>
+                            <Label Content="Número de cuenta:"/>
+                            <TextBox x:Name="txtCuentaPadrino" Text="{Binding NumeroCuenta}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                     Margin="5,0,0,5"/>
+                            <Separator/>
+                            <Label Content="Edad:"/>
+                            <TextBox x:Name="txtEdadPadrino" Text="{Binding Edad}"
+                                     PreviewTextInput="txtEntero_PreviewTextInput"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                     ToolTip="Solo admite números"/>
+                            <Label Content="Teléfono:"/>
+                            <TextBox x:Name="txtTelefonoPadrino" PreviewTextInput="txtEntero_PreviewTextInput"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown" ToolTip="Solo admite números"
+                                     Validation.ErrorTemplate="{StaticResource plantillaFeedbackError}">
+                                <TextBox.Text>
+                                    <Binding Path="Telefono"
+                                         ValidatesOnDataErrors="True"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local:ReglaLongitud NumCaracteres="9"/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <Label Content="Aportación (euros):"/>
+                            <TextBox x:Name="txtAportacionPadrino" Text="{Binding Aportacion}"
+                                     PreviewTextInput="txtEntero_PreviewTextInput"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                     Margin="5,0,0,10" ToolTip="Solo admite números"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <Button x:Name="btnAñadirPerro" HorizontalAlignment="Center" Grid.Row="1"
+                            VerticalAlignment="Top" Margin="0,20,250,0" Height="70" Width="170"
+                            Click="btnAñadirPerro_Click" ToolTip="Pulse para añadir un perro">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Iconos/add_c.png" Margin="0,5,5,5"/>
+                            <TextBlock Text="Añadir" FontSize="28" FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+
+                    </Button>
+
+                    <Button x:Name="btnEliminarPerro" HorizontalAlignment="Center" Grid.Row="1"
+                            VerticalAlignment="Top" Margin="250,20,0,0" Height="70" Width="190"
+                            Click="btnEliminarPerro_Click" ToolTip="Pulse para eliminar el perro seleccionado">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Iconos/remove_c.png" Margin="0,5,5,5"/>
+                            <TextBlock Text="Eliminar" FontSize="28" FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+
+                    </Button>
+
+                    <Button x:Name="btnPadrino" Grid.Column="3" VerticalAlignment="Bottom" Margin="15,0,0,95"
+                            Height="60" HorizontalAlignment="Left" Click="btnPadrino_Click"
+                            ToolTip="Pulse para añadir un padrino a este perro">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Iconos/padrino.png" Margin="0,5,5,5"/>
+                            <TextBlock Text="Añadir padrino" FontSize="24" FontWeight="Bold"
+                                       VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        </StackPanel>
+
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Iconos/voluntario.png"
+                               Width="50" Height="50"/>
+                        <TextBlock Text="Voluntarios" 
+                               VerticalAlignment="Center" Margin="7,0,0,0" FontSize="24"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="800*"/>
+                        <RowDefinition Height="189*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="638*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="1249*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox x:Name="lstVoluntarios" ItemsSource="{Binding}" SelectedItem="0" SelectedIndex="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" 
+                                           Width="100" Height="100"/>
+                                    <TextBlock Text="{Binding Nombre}"
+                                               VerticalAlignment="Center" Margin="7,0,0,0" FontSize="24"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" Grid.RowSpan="2"/>
+
+                    <GroupBox Grid.Column="2" FontSize="24" Header="Información Voluntario"
+                              VerticalAlignment="Top" Grid.RowSpan="2"
+                              Margin="5,0,0,0">
+                        <StackPanel>
+                            <Label Content="Dni:"/>
+                            <TextBox x:Name="txtDni"
+                                     Text="{Binding ElementName=lstVoluntarios, Path=SelectedItem.Dni}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"/>
+                            <Label Content="Nombre:"/>
+                            <TextBox x:Name="txtNombreVoluntario" 
+                                     Text="{Binding ElementName=lstVoluntarios, Path=SelectedItem.Nombre}"/>
+                            <Label Content="Apellidos:"/>
+                            <TextBox x:Name="txtApellidosVoluntario" 
+                                     Text="{Binding ElementName=lstVoluntarios, Path=SelectedItem.Apellidos}"/>
+                            <Border Margin="5,5,0,0" HorizontalAlignment="Left" 
+                                    BorderBrush="Black" BorderThickness="1">
+                                <Grid>
+                                    <Image x:Name="imgVoluntario" Height="300" Width="350" Stretch="Fill"
+                                           HorizontalAlignment="Left" Source="{Binding ElementName=lstVoluntarios, Path=SelectedItem.Image}"/>
+                                    <Button x:Name="btnImagenVoluntario" VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right" Click="btnImagenVoluntario_Click"
+                                            ToolTip="Pulse para seleccionar otra imagen">
+                                        <Image Height="30" Width="30"
+                                               Source="Iconos/reemplazar.png"/>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                            <Label Content="Horario:"/>
+                            <TextBox x:Name="txtHorario" Margin="5,0,0,5"
+                                     Text="{Binding ElementName=lstVoluntarios, Path=SelectedItem.Horario}"/>
+                            <Separator/>
+                            <Label Content="Edad:"/>
+                            <TextBox x:Name="txtEdadVoluntario"
+                                     Text="{Binding ElementName=lstVoluntarios, Path=SelectedItem.Edad}"
+                                     PreviewTextInput="txtEntero_PreviewTextInput"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                     ToolTip="Solo admite números"/>
+                            <Label Content="Teléfono:"/>
+                            <TextBox x:Name="txtTelefono" PreviewTextInput="txtEntero_PreviewTextInput"
+                                     Validation.ErrorTemplate="{StaticResource plantillaFeedbackError}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown" Margin="5,0,0,5"
+                                     ToolTip="Solo admite números">
+                                <TextBox.Text>
+                                    <Binding ElementName="lstVoluntarios" Path="SelectedItem.Telefono"
+                                         ValidatesOnDataErrors="True"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local:ReglaLongitud NumCaracteres="9"/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <Separator/>
+                            <CheckBox x:Name="chVeterinarios" Content="Conocimientos veterinarios"
+                                          IsChecked="{Binding ElementName=lstVoluntarios, Path=SelectedItem.ConocimientosVeterinarios}"/>
+                            <CheckBox x:Name="chFestivos" Content="Disponibilidad en días festivos"
+                                          IsChecked="{Binding ElementName=lstVoluntarios, Path=SelectedItem.Festivos}"/>
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <Button x:Name="btnAñadirVoluntario" HorizontalAlignment="Center" Grid.Row="1"
+                            VerticalAlignment="Top" Margin="0,20,250,0" Height="70" Width="220"
+                            Click="btnAñadirVoluntario_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Iconos/add_c.png" Margin="0,5,5,5"/>
+                            <TextBlock Text="Dar de alta" FontSize="28" FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+
+                    </Button>
+
+                    <Button x:Name="btnEliminarVoluntario" HorizontalAlignment="Center" Grid.Row="1"
+                            VerticalAlignment="Top" Margin="250,20,0,0" Height="70" Width="220"
+                            Click="btnEliminarVoluntario_Click">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Iconos/remove_c.png" Margin="0,5,5,5"/>
+                            <TextBlock Text="Dar de baja" FontSize="28" FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+                    </Button>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="Iconos/socio.png"
+                               Width="50" Height="50"/>
+                        <TextBlock Text="Socios" 
+                               VerticalAlignment="Center" Margin="7,0,0,0" FontSize="24"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="800*"/>
+                        <RowDefinition Height="189*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="638*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="1249*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListBox x:Name="lstSocios" ItemsSource="{Binding}" SelectedItem="0" SelectedIndex="0">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Image}" 
+                                           Width="100" Height="100"/>
+                                    <TextBlock Text="{Binding Nombre}"
+                                               VerticalAlignment="Center" Margin="7,0,0,0" FontSize="24"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <GridSplitter HorizontalAlignment="Stretch" Grid.RowSpan="2" Grid.Column="1"/>
+
+                    <GroupBox x:Name="gbSocio" Grid.Column="2" Grid.Row="0" FontSize="24" Grid.RowSpan="2"
+                              Header="Información Socio" VerticalAlignment="Top"
+                              Margin="5,0,0,0">
+                        <StackPanel>
+                            <Label Content="Dni:"/>
+                            <TextBox x:Name="txtDniSocio"
+                                     Text="{Binding ElementName=lstSocios, Path=SelectedItem.Dni}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"/>
+                            <Label Content="Nombre:"/>
+                            <TextBox x:Name="txtNombre"
+                                         Text="{Binding ElementName=lstSocios, Path=SelectedItem.Nombre}"/>
+                            <Label Content="Apellidos:"/>
+                            <TextBox x:Name="txtApellidos"
+                                         Text="{Binding ElementName=lstSocios, Path=SelectedItem.Apellidos}"/>
+                            <Border Margin="5,5,0,0" HorizontalAlignment="Left" 
+                                    BorderBrush="Black" BorderThickness="1">
+                                <Grid>
+                                    <Image x:Name="imgSocio" Height="300" Width="350" Stretch="Fill"
+                                                HorizontalAlignment="Left"
+                                                Source="{Binding ElementName=lstSocios, Path=SelectedItem.Image}"/>
+                                    <Button x:Name="btnImagenSocio" VerticalAlignment="Bottom"
+                                            HorizontalAlignment="Right" Click="btnImagenSocio_Click"
+                                            ToolTip="Pulse para seleccionar otra imagen">
+                                        <Image Height="30" Width="30"
+                                                    Source="Iconos/reemplazar.png"/>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                            <Label Content="Número de cuenta:"/>
+                            <TextBox x:Name="txtCuentaSocio" Margin="5,0,0,5"
+                                     Text="{Binding ElementName=lstSocios, Path=SelectedItem.CuentaBancaria}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"/>
+                            <Separator/>
+                            <Label Content="Edad:"/>
+                            <TextBox x:Name="txtEdadSocio"
+                                     Text="{Binding ElementName=lstSocios, Path=SelectedItem.Edad}"
+                                     PreviewTextInput="txtEntero_PreviewTextInput"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                     ToolTip="Solo admite números"/>
+                            <Label Content="Telefono:"/>
+                            <TextBox x:Name="txtTelefonoSocio"
+                                     Validation.ErrorTemplate="{StaticResource plantillaFeedbackError}"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown" ToolTip="Solo admite números">
+                                <TextBox.Text>
+                                    <Binding ElementName="lstSocios" Path="SelectedItem.Telefono"
+                                         ValidatesOnDataErrors="True"
+                                         UpdateSourceTrigger="PropertyChanged">
+                                        <Binding.ValidationRules>
+                                            <local:ReglaLongitud NumCaracteres="9"/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </TextBox.Text>
+                            </TextBox>
+                            <Label Content="Cuantía (euros):"/>
+                            <TextBox x:Name="txtCuantia" Margin="5,0,0,10"
+                                     Text="{Binding ElementName=lstSocios, Path=SelectedItem.Cuantia}"
+                                     PreviewTextInput="txtEntero_PreviewTextInput"
+                                     PreviewKeyDown="pulsarEspacio_PreviewKeyDown"
+                                     ToolTip="Solo admite números"/>
+                        </StackPanel>
+                    </GroupBox>
+
+                    <Button x:Name="btnAñadirSocio" HorizontalAlignment="Center" Grid.Row="1"
+                            VerticalAlignment="Top" Margin="0,20,250,0" Height="70" Width="170"
+                            Click="btnAñadirSocio_Click" ToolTip="Pulse para añadir otro socio">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Iconos/add_c.png" Margin="0,5,5,5"/>
+                            <TextBlock Text="Añadir" FontSize="28" FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+
+                    </Button>
+
+                    <Button x:Name="btnEliminarSocio" HorizontalAlignment="Center" Grid.Row="1"
+                            VerticalAlignment="Top" Margin="250,20,0,0" Height="70" Width="190"
+                            Click="btnEliminarSocio_Click" ToolTip="Pulse para eliminar el socio seleccionado">
+
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="Iconos/remove_c.png" Margin="0,5,5,5"/>
+                            <TextBlock Text="Eliminar" FontSize="28" FontWeight="Bold"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <Button.Effect>
+                            <DropShadowEffect/>
+                        </Button.Effect>
+
+                    </Button>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

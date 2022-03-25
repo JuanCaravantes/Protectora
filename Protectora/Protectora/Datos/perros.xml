@@ -1,0 +1,12 @@
+<Perros>
+	<Perro Nombre="Copito" Sexo="Macho" Raza="Golden Retriever" Tamaño="1,6" Edad="3" FechaEntrada="02/01/2022" Cachorro="false" Ppp="false" Vacunado="true" Esterilizado="true" Padrino="" Foto="Perros/Copito.png"/>
+	<Perro Nombre="Lady" Sexo="Hembra" Raza="Bulldog" Tamaño="0,7" Edad="1" FechaEntrada="09/11/2021" Cachorro="true" Ppp="false" Vacunado="true" Esterilizado="false" Padrino="12345678A" Foto="Perros/Lady.png"/>
+	<Perro Nombre="Night" Sexo="Macho" Raza="Pastor Aleman" Tamaño="1,7" Edad="6" FechaEntrada="21/05/2021" Cachorro="false" Ppp="false" Vacunado="true" Esterilizado="false" Padrino="" Foto="Perros/Night.png"/>
+	<Perro Nombre="Trueno" Sexo="Macho" Raza="Galgo" Tamaño="1,4" Edad="5" FechaEntrada="06/12/2021" Cachorro="false" Ppp="true" Vacunado="true" Esterilizado="true" Padrino="" Foto="Perros/Trueno.png"/>
+	<Perro Nombre="Pomposa" Sexo="Hembra" Raza="Pomerania" Tamaño="0,1" Edad="1" FechaEntrada="03/01/2022" Cachorro="true" Ppp="false" Vacunado="true" Esterilizado="false" Padrino="15236845T" Foto="Perros/Pomposa.png"/>
+	<Perro Nombre="Ambar" Sexo="Hembra" Raza="Corgi Gales" Tamaño="0,8" Edad="4" FechaEntrada="18/09/2021" Cachorro="false" Ppp="false" Vacunado="false" Esterilizado="true" Padrino="59824537D" Foto="Perros/Ambar.png"/>
+	<Perro Nombre="Gordito" Sexo="Macho" Raza="Chow Chow" Tamaño="1" Edad="8" FechaEntrada="05/10/2021" Cachorro="false" Ppp="false" Vacunado="true" Esterilizado="true" Padrino="" Foto="Perros/Gordito.png"/>
+	<Perro Nombre="Cristal" Sexo="Macho" Raza="Mastin Italiano" Tamaño="1,6" Edad="5" FechaEntrada="06/07/2021" Cachorro="false" Ppp="true" Vacunado="true" Esterilizado="true" Padrino="" Foto="Perros/Cristal.png"/>
+	<Perro Nombre="Firulais" Sexo="Macho" Raza="Labrador Retriever" Tamaño="1,3" Edad="7" FechaEntrada="02/06/2021" Cachorro="false" Ppp="false" Vacunado="true" Esterilizado="true" Padrino="" Foto="Perros/Firulais.png"/>
+	<Perro Nombre="Red" Sexo="Hembra" Raza="Caniche" Tamaño="0,5" Edad="1" FechaEntrada="02/08/2021" Cachorro="true" Ppp="true" Vacunado="false" Esterilizado="true" Padrino="" Foto="Perros/Red.png"/>
+</Perros>

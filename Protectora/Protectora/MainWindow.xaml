@@ -1,0 +1,111 @@
+﻿<Window x:Name="loginWindow" x:Class="Protectora.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Protectora"
+        mc:Ignorable="d"
+        Title="Login" Width="1920" Height="1080" WindowStartupLocation="CenterScreen"
+        FontFamily="Verdana" Icon="Iconos/usuario.png" WindowState="Maximized" ResizeMode="NoResize">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/Imágenes/fondo.jpg" 
+                    Stretch="UniformToFill"/>
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="64*"/>
+            <RowDefinition Height="130*"/>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="61*"/>
+            <RowDefinition Height="115*"/>
+            <RowDefinition Height="566*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="800"/>
+            <ColumnDefinition Width="220.8"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="110*"/>
+            <ColumnDefinition Width="159*"/>
+
+        </Grid.ColumnDefinitions>
+        
+        <Rectangle Grid.Row="1" Grid.RowSpan="5" Grid.Column="1" Grid.ColumnSpan="4" 
+                   Stroke="White" StrokeThickness="4"  Fill="#FF5D1212" RadiusX="10" RadiusY="10"/>
+
+        <Label Content="Iniciar Sesión" HorizontalAlignment="Center" VerticalAlignment="Center"
+               Height="70" Width="340" Foreground="White" FontSize="48" FontFamily="Verdana" 
+               Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2"/>
+
+        <Label Content="Usuario" HorizontalAlignment="Right" VerticalAlignment="Center"
+               Grid.Column="1" Height="36" Width="86" Grid.Row="2" Foreground="White" 
+               FontSize="20"/>
+
+        <Label Content="Contraseña" HorizontalAlignment="Right" VerticalAlignment="Center"
+               Grid.Column="1" Height="36" Width="124" Grid.Row="4" Foreground="White"
+               FontSize="20"/>
+
+        <Label x:Name="lblRecordarContrasena" 
+               Grid.Row="3" Grid.Column="1" Content="¿Olvidó su contraseña?" 
+               FontStyle="Italic" Foreground="#FFC4C6E0" Cursor="Hand"
+               FontSize="13" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+               ToolTip="Pulse para restablecer su contraseña (no implementado)">
+            
+        </Label>
+
+        <TextBox x:Name="txtUser" Grid.Column="2" Grid.Row="2" Margin="5" FontSize="28"
+                 Grid.ColumnSpan="2" KeyDown="txtUser_KeyDown" ToolTip="Introduzca su usuario">
+
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Background" Value="AliceBlue"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+
+        <PasswordBox x:Name="txtPass" Grid.Column="2" Grid.Row="4" Margin="5" FontSize="28"
+                     PasswordChar="*" Grid.ColumnSpan="2" KeyDown="txtPass_KeyDown" ToolTip="Introduzca su contraseña">
+            <PasswordBox.Style>
+                <Style TargetType="PasswordBox">
+                    <Style.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderThickness" Value="2"/>
+                            <Setter Property="Background" Value="AliceBlue"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </PasswordBox.Style>
+        </PasswordBox>
+
+        <Button x:Name="btnLogin" Content="Iniciar Sesión" Grid.Column="2" Grid.Row="5" 
+                Width="180" Height="50" FontSize="20" FontWeight="Bold" Foreground="Black" 
+                Margin="5,0,15,0" ToolTip="Pulse para iniciar sesión" Cursor="Hand"
+                Click="Button_Click" VerticalAlignment="Center" HorizontalAlignment="Left">
+
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
+
+        <StackPanel x:Name="stpAdvertencia" Orientation="Horizontal" Grid.Column="3" Height="100" Grid.Row="5"
+                    VerticalAlignment="Center" Width="239" Visibility="Hidden">
+
+            <Image x:Name="imgAdvertencia" Width="50" Height="50" HorizontalAlignment="Left" Margin="0,25" 
+                   Source="/Iconos/warning.png" VerticalAlignment="Bottom"/>
+
+            <Label x:Name="lblAdvertencia" Background="White" 
+                   FontWeight="Bold" FontSize="13" Margin="0,10,0,25"/>
+
+        </StackPanel>
+
+    </Grid>
+</Window>

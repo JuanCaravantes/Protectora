@@ -1,0 +1,12 @@
+﻿<Voluntarios>
+	<Voluntario Nombre="Álvaro" Apellidos="Cardona Sans" Edad="33" Dni="58558653J" Telefono="631564715" Horario="Martes-Jueves" ConocimientosVeterinarios="true" Festivos="true" Image="Voluntarios/Alvaro.jpg"/>
+	<Voluntario Nombre="Felipe" Apellidos="Toledo Acedo" Edad="38" Dni="36421553I" Telefono="643845886" Horario="Viernes" ConocimientosVeterinarios="false" Festivos="false" Image="Voluntarios/Felipe.jpg"/>
+	<Voluntario Nombre="Rita" Apellidos="Barrios Berrocal" Edad="42" Dni="04561827L" Telefono="664187793" Horario="Lunes-Viernes" ConocimientosVeterinarios="true" Festivos="true" Image="Voluntarios/Rita.jpg"/>
+	<Voluntario Nombre="Estibaliz" Apellidos="Picazo Tellez" Edad="31" Dni="74651385M" Telefono="627613245" Horario="Sábado-Domingo" ConocimientosVeterinarios="false" Festivos="true" Image="Voluntarios/Estibaliz.jpg"/>
+	<Voluntario Nombre="Alba" Apellidos="Carrasco Soto" Edad="28" Dni="63791357B" Telefono="687165429" Horario="Miércoles-Sábado" ConocimientosVeterinarios="false" Festivos="false" Image="Voluntarios/Alba.jpg"/>
+	<Voluntario Nombre="Sarah" Apellidos="Montero Fuente" Edad="26" Dni="53525285R" Telefono="617835482" Horario="Viernes-Lunes" ConocimientosVeterinarios="true" Festivos="true" Image="Voluntarios/Sarah.jpg"/>
+	<Voluntario Nombre="Said" Apellidos="Sampedro Beltran" Edad="32" Dni="52176482A" Telefono="613878165" Horario="Domingo" ConocimientosVeterinarios="false" Festivos="false" Image="Voluntarios/Said.jpg"/>
+	<Voluntario Nombre="Dina" Apellidos="Aviles Chen" Edad="29" Dni="68138138L" Telefono="668413844" Horario="Jueves-Viernes" ConocimientosVeterinarios="true" Festivos="false" Image="Voluntarios/Dina.jpg"/>
+	<Voluntario Nombre="Mikel" Apellidos="Ferrando Barbero" Edad="24" Dni="70644282C" Telefono="672621831" Horario="Lunes-Miércoles" ConocimientosVeterinarios="false" Festivos="true" Image="Voluntarios/Mikel.jpg"/>
+	<Voluntario Nombre="Jesica" Apellidos="Herranz Colomer" Edad="23" Dni="54186456D" Telefono="621358195" Horario="Sábado" ConocimientosVeterinarios="false" Festivos="false" Image="Voluntarios/Jesica.jpg"/>
+</Voluntarios>

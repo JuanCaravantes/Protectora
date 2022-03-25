@@ -1,0 +1,12 @@
+<Socios>
+	<Socio Nombre="Ignasi" Apellidos="Paredes Herrera" Edad="25" Dni="10088901C" Telefono="920200933" CuentaBancaria="ES1021038727590875213920" Cuantia="500" Image="Socios/Ignasi.jpg"/>
+	<Socio Nombre="Aurora" Apellidos="Font Caprieria" Edad="29" Dni="87351990Z" Telefono="969984368" CuentaBancaria="ES6901821087087861515906" Cuantia="400" Image="Socios/Aurora.jpg"/>
+	<Socio Nombre="Maria" Apellidos="Reyes CarreÃ±o" Edad="41" Dni="52217932C" Telefono="978540986" CuentaBancaria="ES4202414388154982583378" Cuantia="600" Image="Socios/Maria.jpg"/>
+	<Socio Nombre="Rocio" Apellidos="Campo del Alba" Edad="33" Dni="46298596X" Telefono="912172417" CuentaBancaria="ES6820000107943125397774" Cuantia="700" Image="Socios/Rocio.jpg"/>
+	<Socio Nombre="Roberto" Apellidos="Carlos Prados" Edad="22" Dni="00266788B" Telefono="962027923" CuentaBancaria="ES6501257584665074370083" Cuantia="800" Image="Socios/Roberto.jpg"/>
+	<Socio Nombre="Xabier" Apellidos="Mayoral Mayoral" Edad="36" Dni="94261278X" Telefono="958131380" CuentaBancaria="ES3100197921967175546757" Cuantia="1200" Image="Socios/Xabier.jpg"/>
+	<Socio Nombre="Kevin" Apellidos="Vallejo Vistima" Edad="37" Dni="25413872E" Telefono="978339161" CuentaBancaria="ES1620488984609408579018" Cuantia="300" Image="Socios/Kevin.jpg"/>
+	<Socio Nombre="Araceli" Apellidos="Jaramillo Antequera" Edad="45" Dni="56517812G" Telefono="941417979" CuentaBancaria="ES3302163462101624765660" Cuantia="800" Image="Socios/Araceli.jpg"/>
+	<Socio Nombre="Fabiola" Apellidos="Tello Dorado" Edad="29" Dni="74875334F" Telefono="983717476" CuentaBancaria="ES2821003216342149166905" Cuantia="900" Image="Socios/Fabiola.jpg"/>
+	<Socio Nombre="Vlad" Apellidos="Konstantinov Antonov" Edad="47" Dni="73886392L" Telefono="968497474" CuentaBancaria="ES9400614470726807510662" Cuantia="2000" Image="Socios/Vlad.jpg"/>
+</Socios>
