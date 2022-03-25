@@ -1,1 +1,1 @@
-# Protectora
+Este proyecto trata sobre una protectora de animales, solamente está inplementado el frontend por lo que no tiene ninguna funcionalidad implementada. Este programa está orientado para el uso por parte de los administradores de la protectora, ya que puedes ver los animales que tiene (junto con sus características y información importante), los voluntarios y los socios de esta
